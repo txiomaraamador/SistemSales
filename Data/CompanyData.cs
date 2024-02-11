@@ -36,7 +36,7 @@ namespace SistemSales.Data
             return oList;
         }
         //CREATE
-        public bool CreateCompany(CompanyModel ocompany)
+        public bool CreateCompany(CompanyModel oCompany)
         {
             bool rpta;
             try
@@ -47,9 +47,9 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpCreateCompany", conection);
-                    cmd.Parameters.AddWithValue("name", ocompany.Name);
-                    cmd.Parameters.AddWithValue("address", ocompany.Address);
-                    cmd.Parameters.AddWithValue("phone", ocompany.Phone);
+                    cmd.Parameters.AddWithValue("p_name", oCompany.Name);
+                    cmd.Parameters.AddWithValue("p_address", oCompany.Address);
+                    cmd.Parameters.AddWithValue("p_phone", oCompany.Phone);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }
@@ -63,7 +63,7 @@ namespace SistemSales.Data
             return rpta;
         }
         //EDIT
-        public bool EditCompany(CompanyModel ocompany)
+        public bool EditCompany(CompanyModel oCompany)
         {
             bool rpta;
             try
@@ -74,11 +74,11 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpEditCompany", conection);
-                    cmd.Parameters.AddWithValue("id", ocompany.Id);
+                    cmd.Parameters.AddWithValue("id", oCompany.Id);
 
-                    cmd.Parameters.AddWithValue("name", ocompany.Name);
-                    cmd.Parameters.AddWithValue("address", ocompany.Address);
-                    cmd.Parameters.AddWithValue("phone", ocompany.Phone);
+                    cmd.Parameters.AddWithValue("name", oCompany.Name);
+                    cmd.Parameters.AddWithValue("address", oCompany.Address);
+                    cmd.Parameters.AddWithValue("phone", oCompany.Phone);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }
