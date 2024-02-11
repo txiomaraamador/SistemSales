@@ -1,5 +1,5 @@
-﻿using System.Data.SqlClient;
-using System.Security.Cryptography.X509Certificates;
+﻿using MySql.Data.MySqlClient;
+
 
 namespace SistemSales.Data
 {

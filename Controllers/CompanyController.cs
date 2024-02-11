@@ -28,7 +28,7 @@ namespace SistemSales.Controllers
             var resp = _companyData.CreateCompany(oCompany);
 
             if (resp)
-                return RedirectToAction("ShowCompany");
+                return RedirectToAction("ShowCompanys");
             else
                 return View();
         }

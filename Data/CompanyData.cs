@@ -1,5 +1,4 @@
 ﻿using SistemSales.Models;
-using System.Data.SqlClient;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Xml.Linq;
@@ -26,9 +25,9 @@ namespace SistemSales.Data
                     {
                         oList.Add(new CompanyModel() { 
                         Id = Convert.ToInt32(dr["id"]),
-                        Name = dr["name"].ToString(),
-                        Address = dr["address"].ToString(),
-                        Phone = dr["phone"].ToString(),
+                        Name = dr["p_name"].ToString(),
+                        Address = dr["p_address"].ToString(),
+                        Phone = dr["p_phone"].ToString(),
                         });
                     }
                 }
@@ -46,7 +45,7 @@ namespace SistemSales.Data
                 using (var conection = new MySqlConnection(cn.getChainMySql()))
                 {
                     conection.Open();
-                    MySqlCommand cmd = new MySqlCommand("SpCreateCompany", conection);
+                    MySqlCommand cmd = new MySqlCommand("SpCreateCompany", conection);  
                     cmd.Parameters.AddWithValue("p_name", oCompany.Name);
                     cmd.Parameters.AddWithValue("p_address", oCompany.Address);
                     cmd.Parameters.AddWithValue("p_phone", oCompany.Phone);
@@ -74,11 +73,11 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpEditCompany", conection);
-                    cmd.Parameters.AddWithValue("id", oCompany.Id);
+                    cmd.Parameters.AddWithValue("p_id", oCompany.Id);
 
-                    cmd.Parameters.AddWithValue("name", oCompany.Name);
-                    cmd.Parameters.AddWithValue("address", oCompany.Address);
-                    cmd.Parameters.AddWithValue("phone", oCompany.Phone);
+                    cmd.Parameters.AddWithValue("p_name", oCompany.Name);
+                    cmd.Parameters.AddWithValue("p_address", oCompany.Address);
+                    cmd.Parameters.AddWithValue("p_phone", oCompany.Phone);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }
@@ -103,7 +102,7 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpDeleteCompany", conection);
-                    cmd.Parameters.AddWithValue("id", Id);
+                    cmd.Parameters.AddWithValue("p_id", Id);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
