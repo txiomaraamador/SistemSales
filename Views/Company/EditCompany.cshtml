@@ -1,0 +1,36 @@
+﻿@model CompanyModel
+@{
+    ViewData["Title"] = "EditCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Editar una Empresa
+    </div>
+    <div class="card-body">
+        <form asp-action="EditCompany" asp-controller="Company" method="post">
+
+            <input asp-for="IdCompany" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <spam asp-validation-for="Name" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Direccion</label>
+                <input asp-for="Address" type="text" class="form-control">
+                <spam asp-validation-for="Address" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Telefono</label>
+                <input asp-for="Phone" type="text" class="form-control">
+                <spam asp-validation-for="Phone" class="text-danger"></spam>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Aceptar cambios</button>
+            <a asp-action="ShowCompanys" asp-controller="Company" class="btn btn-primary">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+
