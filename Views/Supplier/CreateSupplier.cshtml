@@ -1,0 +1,39 @@
+﻿@model SupplierModel
+@{
+    ViewData["Title"] = "CreateSupplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <h1 class="display-10">Agregar un Proveedor </h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="ShowSuppliers" asp-controller="Supplier" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
+</nav>
+<div class="card">
+    <div class="card-body">
+        <form asp-action="CreateSupplier" asp-controller="Supplier" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <spam asp-validation-for="Name" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Direccion</label>
+                <input asp-for="Address" type="text" class="form-control">
+                <spam asp-validation-for="Address" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Telefono</label>
+                <input asp-for="Phone" type="text" class="form-control">
+                <spam asp-validation-for="Phone" class="text-danger"></spam>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
