@@ -1,8 +1,41 @@
-﻿
+﻿@model List<CompanyModel>
 @{
     ViewData["Title"] = "ShowCompany";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ShowCompany</h1>
+<div class="card">
+    <div class="card-header">
+        Lista de compañias
+    </div>
+    <div class="card-body">
+        <a asp-action="CreateCompany" asp-controller="Company" class="btn btn-success">Crear nuevo</a>
+        <hr />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        <td>
+                            <a asp-action="EditCompany" asp-controller="Company" class="btn btn-primary btn-sm" asp-route-IdCompany="@item.IdCompany">Editar</a>
+                        </td>
+                        <td>
+                            <a asp-action="DeleteCompany" asp-controller="Company" class="btn btn-danger btn-sm" asp-route-IdCompany="@item.IdCompany">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
+    </div>
+</div>

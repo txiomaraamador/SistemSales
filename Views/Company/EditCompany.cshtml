@@ -1,16 +1,17 @@
 ﻿@model CompanyModel
 @{
-    ViewData["Title"] = "CreateCompany";
+    ViewData["Title"] = "EditCompany";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="card">
     <div class="card-header">
-        Agregar una Empresa
+        Editar una Empresa
     </div>
     <div class="card-body">
-        <form asp-action="CreateCompany" asp-controller="Company" method="post">
+        <form asp-action="EditCompany" asp-controller="Company" method="post">
+
+            <input asp-for="IdCompany" type="hidden" class="form-control">
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <input asp-for="Name" type="text" class="form-control">
@@ -27,8 +28,9 @@
                 <spam asp-validation-for="Phone" class="text-danger"></spam>
             </div>
 
-            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-primary">Aceptar cambios</button>
             <a asp-action="ShowCompanys" asp-controller="Company" class="btn btn-primary">Volver a la lista</a>
         </form>
     </div>
 </div>
+

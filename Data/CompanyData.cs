@@ -11,7 +11,7 @@ namespace SistemSales.Data
         {
             var oList = new List<CompanyModel>();
 
-            var cn = new Conection();
+            var cn = new Conection();   
 
             using (var conection = new MySqlConnection(cn.getChainMySql()))
             {
@@ -23,16 +23,45 @@ namespace SistemSales.Data
                 {
                     while (dr.Read())
                     {
-                        oList.Add(new CompanyModel() { 
-                        Id = Convert.ToInt32(dr["id"]),
-                        Name = dr["p_name"].ToString(),
-                        Address = dr["p_address"].ToString(),
-                        Phone = dr["p_phone"].ToString(),
+                        oList.Add(new CompanyModel() {
+                        IdCompany = Convert.ToInt32(dr["id"]),
+                        Name = dr["name"].ToString(),
+                        Address = dr["address"].ToString(),
+                        Phone = dr["phone"].ToString(),
                         });
                     }
                 }
             }
             return oList;
+        }
+        //Obtener
+        public CompanyModel GetCompany(int IdCompany)
+        {
+            var oCompany = new CompanyModel();
+
+            var cn = new Conection();
+
+            using (var conection = new MySqlConnection(cn.getChainMySql()))
+            {
+                conection.Open();
+                MySqlCommand cmd = new MySqlCommand("SpGetCompany", conection);
+                cmd.Parameters.AddWithValue("p_id", IdCompany);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+
+                        oCompany.IdCompany = Convert.ToInt32(dr["id"]);
+                        oCompany.Name = dr["name"].ToString();
+                        oCompany.Address = dr["address"].ToString();
+                        oCompany.Phone = dr["phone"].ToString();
+                        
+                    }
+                }
+            }
+            return oCompany;
         }
         //CREATE
         public bool CreateCompany(CompanyModel oCompany)
@@ -73,7 +102,7 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpEditCompany", conection);
-                    cmd.Parameters.AddWithValue("p_id", oCompany.Id);
+                    cmd.Parameters.AddWithValue("p_id", oCompany.IdCompany);
 
                     cmd.Parameters.AddWithValue("p_name", oCompany.Name);
                     cmd.Parameters.AddWithValue("p_address", oCompany.Address);
@@ -91,7 +120,7 @@ namespace SistemSales.Data
             return rpta;
         }
         //DELETE
-        public bool DeleteCompany(int Id)
+        public bool DeleteCompany(int IdCompany)
         {
             bool rpta;
             try
@@ -102,7 +131,7 @@ namespace SistemSales.Data
                 {
                     conection.Open();
                     MySqlCommand cmd = new MySqlCommand("SpDeleteCompany", conection);
-                    cmd.Parameters.AddWithValue("p_id", Id);
+                    cmd.Parameters.AddWithValue("p_id", IdCompany);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
