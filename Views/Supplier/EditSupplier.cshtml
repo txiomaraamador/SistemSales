@@ -1,0 +1,46 @@
+﻿@model SupplierModel
+@{
+    ViewData["Title"] = "EditSupplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <h1 class="display-10">Editar Proveedor </h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="CreateSupplier" asp-controller="Supplier" class="btn btn-success">Crear nuevo</a>
+            <a asp-action="ShowSuppliers" asp-controller="Supplier" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="EditSupplier" asp-controller="Supplier" method="post">
+
+            <input asp-for="IdSupplier" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <spam asp-validation-for="Name" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Direccion</label>
+                <input asp-for="Address" type="text" class="form-control">
+                <spam asp-validation-for="Address" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Telefono</label>
+                <input asp-for="Phone" type="text" class="form-control">
+                <spam asp-validation-for="Phone" class="text-danger"></spam>
+            </div>
+
+            <div class="text-end">
+                <!-- Cambio: Alinear el botón a la derecha -->
+                <button type="submit" class="btn btn-primary">Aceptar cambios</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
