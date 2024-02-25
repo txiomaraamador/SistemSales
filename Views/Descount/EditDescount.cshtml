@@ -1,0 +1,40 @@
+﻿@model DescountModel
+@{
+    ViewData["Title"] = "EditDescount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <h1 class="display-10">Editar Descuento </h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="CreateDescount" asp-controller="Descount" class="btn btn-success">Crear nuevo</a>
+            <a asp-action="ShowDescounts" asp-controller="Descount" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="EditDescount" asp-controller="Descount" method="post">
+
+            <input asp-for="IdDescount" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Codigo</label>
+                <input asp-for="Code" type="text" class="form-control">
+                <spam asp-validation-for="Code" class="text-danger"></spam>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cantidad a descontar para porcentaje</label>
+                <input asp-for="Cant" type="text" class="form-control">
+                <spam asp-validation-for="Cant" class="text-danger"></spam>
+            </div>
+
+            <div class="text-end">
+                <!-- Cambio: Alinear el botón a la derecha -->
+                <button type="submit" class="btn btn-primary">Aceptar cambios</button>
+            </div>
+
+        </form>
+    </div>
+</div>
