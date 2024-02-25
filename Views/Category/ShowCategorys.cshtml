@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "ShowCategosys";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <h1 class="display-10">Listado de Categorias</h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="CreateCategory" asp-controller="Category" class="btn btn-success">Crear nuevo</a>
+            <form action="{{ route('searchp') }}" method="GET" class="d-flex" role="search">
+                <input type="search" name="query" placeholder="Buscar..." class="form-control me-2">
+                <button class="btn btn-outline-warning" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <a asp-action="EditCategory" asp-controller="Category" class="btn btn-primary btn-sm" asp-route-IdCategory="@item.IdCategory">Editar</a>
+                            <button class="btn btn-danger btn-sm delete-btn" data-id="@item.IdCategory">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.delete-btn').click(function () {
+                var categoryId = $(this).data('id');
+                if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
+                    $.post('/Category/DeleteCategory', { IdCategory: categoryId })
+                        .done(function () {
+                            location.reload(); // Recargar la página después de eliminar
+                        })
+                        .fail(function () {
+                            alert('Error al intentar eliminar la categoría.');
+                        });
+                }
+            });
+        });
+    </script>
+}
