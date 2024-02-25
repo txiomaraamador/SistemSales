@@ -35,11 +35,23 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Supplier" asp-action="ShowSuppliers">Proveedores</a>
 
                         </li>
-                      <li>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="ShowCategorys">Categorias</a>
-                      </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Brand" asp-action="ShowBrands">Marcas</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Catalogos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="ShowCategorys">Categorias</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Brand" asp-action="ShowBrands">Marcas</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Size" asp-action="ShowSizes">Tallas</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
