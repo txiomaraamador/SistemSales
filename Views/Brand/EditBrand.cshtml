@@ -1,0 +1,35 @@
+﻿@model BrandModel
+@{
+    ViewData["Title"] = "EditBrand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <h1 class="display-10">Editar Marca </h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="CreateBrand" asp-controller="Brand" class="btn btn-success">Crear nuevo</a>
+            <a asp-action="ShowBrands" asp-controller="Brand" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="EditBrand" asp-controller="Brand" method="post">
+
+            <input asp-for="IdBrand" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <spam asp-validation-for="Name" class="text-danger"></spam>
+            </div>
+
+            <div class="text-end">
+                <!-- Cambio: Alinear el botón a la derecha -->
+                <button type="submit" class="btn btn-primary">Aceptar cambios</button>
+            </div>
+
+        </form>
+    </div>
+</div>
